@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>지구소리 (EarthVoice) — 기후·환경 청소년 비영리</title>
+  <meta name="description" content="지구소리(EarthVoice) — 청소년이 함께하는 기후·생태 보호 재단. 교육, 캠페인, 생태복원 활동을 통해 기후위기에 대응합니다." />
+  <style>
+    :root{
+      --bg:#f6fbf7;
+      --card:#ffffff;
+      --accent:#2b9a6a;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 20px rgba(20,30,20,0.08);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Gothic", sans-serif;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #f1fbf4 0%, var(--bg) 100%);
+      color:#0b1a12;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Container */
+    .site{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 20px;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:56px;height:56px;
+      display:inline-grid;
+      place-items:center;
+      background:linear-gradient(135deg,#ffffff 0%, #e9fff0 100%);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      padding:8px;
+    }
+    .brand h1{
+      font-size:18px;
+      margin:0;
+      letter-spacing:-0.2px;
+    }
+    .brand p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1;
+    }
+
+    nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      background:transparent;
+      border:1px solid rgba(11,26,18,0.08);
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:white;
+      border:none;
+      box-shadow: 0 6px 18px rgba(43,154,106,0.18);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .hero-card{
+      background:var(--card);
+      padding:26px;
+      border-radius:14px;
+      box-shadow:var(--shadow);
+    }
+    .hero h2{
+      margin:0 0 8px 0;
+      font-size:26px;
+    }
+    .slogan{
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .stats{
+      display:flex;
+      gap:12px;
+      margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .stat{
+      background:linear-gradient(180deg, rgba(43,154,106,0.06), rgba(43,154,106,0.02));
+      padding:10px 14px;
+      border-radius:10px;
+      min-width:120px;
+      text-align:center;
+    }
+    .stat strong{display:block;font-size:20px}
+    .stat small{display:block;color:var(--muted);font-size:12px}
+
+    /* Sidebar card */
+    .side{
+      background:linear-gradient(180deg,#ffffff,#f7fff9);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+    }
+    .side h3{margin:0 0 8px 0}
+    .side p{margin:0 0 12px 0;color:var(--muted);font-size:14px}
+
+    /* Activities */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin-bottom:20px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .card h4{margin:0 0 8px 0}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Participation form */
+    form{display:grid;gap:10px}
+    label{font-size:13px;color:var(--muted)}
+    input[type="text"], input[type="email"], textarea, select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e8efe9;
+      background:transparent;
+      font-size:14px;
+    }
+    textarea{min-height:90px;resize:vertical}
+    .form-actions{display:flex;gap:10px;align-items:center}
+
+    /* Footer */
+    footer{
+      margin-top:30px;
+      padding:18px 0;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .hidden{display:none}
+    a.plain{color:inherit;text-decoration:none}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns: 1fr; padding-bottom:6px}
+      .logo{width:48px;height:48px}
+    }
+
+    /* small animations */
+    .pulse{
+      animation: pulse 2.6s linear infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.03)}
+      100%{transform:scale(1)}
+    }
+
+    /* focus */
+    a:focus, button:focus, input:focus, textarea:focus {outline:3px solid rgba(43,154,106,0.14); outline-offset:2px}
+  </style>
+</head>
+<body>
+  <div class="site" id="top">
+    <header role="banner" aria-label="페이지 상단">
+      <a class="brand" href="#top" aria-label="지구소리 홈페이지로 이동">
+        <div class="logo" aria-hidden="true">
+          <!-- SVG 로고: 지구 + 파형 -->
+          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="지구소리 로고">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#39b982"/>
+                <stop offset="1" stop-color="#2b9a6a"/>
+              </linearGradient>
+            </defs>
+            <circle cx="24" cy="24" r="20" stroke="url(#g)" stroke-width="2.4" fill="rgba(43,154,106,0.06)"/>
+            <path d="M10 28c4-6 7-10 14-10s10 4 14 10" stroke="#2b9a6a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 22l4 0.5 2-3 3 5 2-3 3 6 2-4 4 1" stroke="#2b9a6a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>지구소리 <small style="opacity:.9">EarthVoice</small></h1>
+          <p>지구의 목소리를 대신 외치다</p>
+        </div>
+      </a>
+
+      <nav role="navigation" aria-label="주요 메뉴">
+        <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">소개</button>
+        <button class="btn" onclick="document.getElementById('activities').scrollIntoView({behavior:'smooth'})">활동</button>
+        <button class="btn" onclick="document.getElementById('participate').scrollIntoView({behavior:'smooth'})">참여</button>
+        <button class="btn primary" id="donateBtn">소식지 구독</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-card" role="region" aria-label="지구소리 소개">
+        <h2 id="hero-title">지구소리 — 청소년이 만드는 기후·환경 행동</h2>
+        <p class="slogan">우리는 기후위기 시대에 청소년의 목소리로 행동합니다. 교육과 캠페인, 현장 복원 활동을 통해 변화를 만듭니다.</p>
+
+        <div class="cta-row" role="group" aria-label="주요 동작">
+          <button class="btn primary" onclick="document.getElementById('participate').scrollIntoView({behavior:'smooth'})">참여 신청하기</button>
+          <a class="btn" href="#activities">최근 활동 보기</a>
+        </div>
+
+        <div class="hero stats" aria-hidden="false" style="margin-top:18px">
+          <div class="stat">
+            <strong id="count-events">0</strong>
+            <small>진행 프로젝트</small>
+          </div>
+          <div class="stat">
+            <strong id="count-volunteers">0</strong>
+            <small>참여 학생</small>
+          </div>
+          <div class="stat">
+            <strong id="count-trees">0</strong>
+            <small>복원 면적(㎡)</small>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side" aria-labelledby="side-title">
+        <h3 id="side-title">핵심 활동</h3>
+        <p><strong>멸종위기 종·생태계 보호 캠페인</strong><br>현장 조사 · 정책 제안 · 주민 교육을 통해 지역 생태계를 지키고 목소리를 냅니다.</p>
+
+        <h4 style="margin-top:10px">당장 참여할 수 있는 활동</h4>
+        <ul style="margin:6px 0 0 18px;color:var(--muted)">
+          <li>지역 하천 정화 & 모니터링</li>
+          <li>학교 생물다양성 기록 만들기</li>
+          <li>환경 카드뉴스 제작 캠페인</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title" style="margin-bottom:18px">
+      <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <h3 id="about-title">우리는 누구인가?</h3>
+          <p class="muted">지구소리(EarthVoice)는 고등학생들이 주도하는 비영리 재단입니다. 기후·생태 위기에 대응하기 위해 교육, 조사, 실천 프로젝트를 운영하며 청소년의 목소리를 지역사회와 정책에 전달합니다.</p>
+        </div>
+        <div style="flex-basis:320px">
+          <div class="card" role="region" aria-label="미션">
+            <h4>미션</h4>
+            <p>청소년의 관점으로 지속가능한 지역사회 모델을 만들고, 과학 기반의 행동으로 생태계를 회복합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section id="activities" aria-labelledby="acts-title" style="margin-bottom:18px">
+      <h3 id="acts-title">주요 활동</h3>
+      <div class="grid">
+        <article class="card" aria-labelledby="act1">
+          <h4 id="act1">1. 생태 모니터링 프로젝트</h4>
+          <p>학교 주변과 지역 하천의 생물다양성을 조사해 연간 리포트를 발행합니다. 데이터는 공개되어 누구나 열람 가능합니다.</p>
+        </article>
+
+        <article class="card" aria-labelledby="act2">
+          <h4 id="act2">2. 멸종위기 종 보호 캠페인</h4>
+          <p>현장 서식지 보호 활동과 주민 참여형 워크숍을 열어 지역 보전 인프라를 구축합니다.</p>
+        </article>
+
+        <article class="card" aria-labelledby="act3">
+          <h4 id="act3">3. 기후교육 & 콘텐츠 제작</h4>
+          <p>청소년 눈높이의 카드뉴스, 영상, 팟캐스트로 기후·환경 이슈를 알립니다. 학교 수업 자료로도 제공합니다.</p>
+        </article>
+
+        <article class="card" aria-labelledby="act4">
+          <h4 id="act4">4. 학교 친환경 챌린지</h4>
+          <p>플라스틱 감소 챌린지, 텀블러 캠페인, 교내 에너지 절약 실험 등 생활 속 변화를 촉진합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Participate -->
+    <section id="participate" aria-labelledby="participate-title" style="margin-bottom:18px">
+      <h3 id="participate-title">참여 신청</h3>
+      <div class="grid">
+        <div class="card" style="grid-column:span 1">
+          <h4>프로젝트 참여하기</h4>
+          <p class="muted">팀 활동, 현장 봉사, 콘텐츠 제작 등 원하는 분야를 선택해 신청하세요.</p>
+
+          <form id="participationForm" novalidate>
+            <label for="name">이름</label>
+            <input id="name" name="name" type="text" placeholder="홍길동" required />
+
+            <label for="school">학교 (선택)</label>
+            <input id="school" name="school" type="text" placeholder="OO고등학교" />
+
+            <label for="email">이메일</label>
+            <input id="email" name="email" type="email" placeholder="email@example.com" required />
+
+            <label for="interest">관심 분야</label>
+            <select id="interest" name="interest" required>
+              <option value="">선택하세요</option>
+              <option value="monitoring">생태 모니터링</option>
+              <option value="campaign">캠페인 & 교육</option>
+              <option value="content">콘텐츠 제작</option>
+              <option value="volunteer">정화봉사</option>
+            </select>
+
+            <label for="note">한마디 (선택)</label>
+            <textarea id="note" name="note" placeholder="참여 동기나 문의사항을 적어주세요."></textarea>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary">신청 보내기</button>
+              <button type="reset" class="btn">초기화</button>
+            </div>
+            <p id="formMessage" class="muted" aria-live="polite" style="margin:8px 0 0 0"></p>
+          </form>
+        </div>
+
+        <div class="card">
+          <h4>자주 묻는 질문</h4>
+          <p class="muted"><strong>Q.</strong> 봉사 시간 인증 가능한가요?<br><strong>A.</strong> 지역 학교와 협의 후 인증이 가능합니다. (학교별 정책에 따름)</p>
+          <p class="muted"><strong>Q.</strong> 연령 제한이 있나요?<br><strong>A.</strong> 고등학생 대상 활동이지만 일부 공개 워크숍은 중·고생 누구나 참여 가능합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- News / Updates -->
+    <section aria-labelledby="news-title" style="margin-bottom:18px">
+      <h3 id="news-title">최근 소식</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>하천 생태 조사 보고서 발간</h4>
+          <p class="muted">지역 하천 3곳을 조사하여 결과를 정리한 '하천 생태 리포트 2025'를 공개했습니다.</p>
+        </div>
+        <div class="card">
+          <h4>멸종위기 식물 보호 캠페인 시작</h4>
+          <p class="muted">학교와 함께 잔디밭 복원 구역을 마련하여 식재 및 관리 활동을 시작했습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter modal (simple) -->
+    <div id="newsletterModal" class="card" style="position:fixed;right:18px;bottom:18px;border-radius:14px;max-width:320px;box-shadow:0 12px 30px rgba(10,20,10,0.12)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2fff7);display:grid;place-items:center">
+          <!-- small speaker icon -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 9v6h4l5 4V5l-5 4H5z" stroke="#2b9a6a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="flex:1">
+          <strong>소식지 구독</strong>
+          <div style="font-size:13px;color:var(--muted)">활동 소식과 참여 기회를 놓치지 마세요</div>
+        </div>
+      </div>
+
+      <form id="newsletterForm" style="margin-top:10px;display:flex;gap:8px;">
+        <input type="email" id="newsEmail" placeholder="이메일 입력" style="flex:1;border-radius:10px;padding:8px;border:1px solid #e8efe9" required />
+        <button class="btn primary" type="submit">구독</button>
+      </form>
+      <p id="newsMsg" class="muted" style="margin:8px 0 0 0" aria-live="polite"></p>
+    </div>
+
+    <footer role="contentinfo">
+      <div>© <strong>지구소리 (EarthVoice)</strong> · 고등학생 비영리 재단</div>
+      <div class="muted">문의: <a class="plain" href="mailto:hello@earthvoice.example">hello@earthvoice.example</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple counters (simulate loaded data)
+    (function initCounters(){
+      const events = document.getElementById('count-events');
+      const volunteers = document.getElementById('count-volunteers');
+      const trees = document.getElementById('count-trees');
+
+      const data = {events:7, volunteers:152, trees:420}; // 예시값 - 원하면 수정
+      const duration = 900; // ms
+
+      function animate(el, to){
+        const start = 0;
+        const startTime = performance.now();
+        function step(now){
+          const t = Math.min(1, (now - startTime)/duration);
+          const v = Math.floor(start + (to - start) * easeOutCubic(t));
+          el.textContent = v.toLocaleString();
+          if(t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+      animate(events, data.events);
+      animate(volunteers, data.volunteers);
+      animate(trees, data.trees);
+    })();
+
+    // Participation form handling (client-side only)
+    (function(){
+      const form = document.getElementById('participationForm');
+      const msg = document.getElementById('formMessage');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        msg.textContent = '';
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const interest = form.interest.value;
+
+        if(!name || !email || !interest){
+          msg.textContent = '이름, 이메일, 관심 분야는 필수입니다.';
+          return;
+        }
+        if(!validateEmail(email)){
+          msg.textContent = '올바른 이메일 주소를 입력하세요.';
+          return;
+        }
+
+        // 시연용: 실제 서버가 없으므로 로컬에서 성공 메시지 표시
+        form.querySelector('button[type="submit"]').disabled = true;
+        form.querySelector('button[type="submit"]').textContent = '보내는 중...';
+
+        setTimeout(() => {
+          form.reset();
+          form.querySelector('button[type="submit"]').disabled = false;
+          form.querySelector('button[type="submit"]').textContent = '신청 보내기';
+          msg.textContent = '신청이 접수되었습니다. 참여 관련 안내를 이메일로 보내드릴게요. 감사합니다 :)';
+          // 작은 시각적 강조
+          flashMessage(msg);
+        }, 900);
+      });
+
+      function validateEmail(email){
+        // 간단한 이메일 검증
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+      function flashMessage(el){
+        el.style.transition = 'transform .25s ease, opacity .25s';
+        el.style.transform = 'translateY(-3px)';
+        el.style.opacity = '1';
+        setTimeout(()=>{ el.style.transform = ''; }, 600);
+      }
+    })();
+
+    // Newsletter modal handling
+    (function(){
+      const form = document.getElementById('newsletterForm');
+      const input = document.getElementById('newsEmail');
+      const msg = document.getElementById('newsMsg');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        msg.textContent = '';
+        const email = input.value.trim();
+        if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+          msg.textContent = '유효한 이메일을 입력해주세요.';
+          return;
+        }
+        form.querySelector('button').disabled = true;
+        form.querySelector('button').textContent = '...';
+        setTimeout(()=>{
+          msg.textContent = '구독이 완료되었습니다! 환영합니다 🎉';
+          input.value = '';
+          form.querySelector('button').disabled = false;
+          form.querySelector('button').textContent = '구독';
+        }, 700);
+      });
+    })();
+
+    // Donate / open modal handler (here: scroll to newsletter)
+    document.getElementById('donateBtn').addEventListener('click', function(){
+      document.getElementById('newsEmail').focus();
+      window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
+    });
+
+    // keyboard accessibility: press Esc to close any alerts (simple)
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        const live = document.querySelector('[aria-live]');
+        if(live) live.textContent = '';
+      }
+    });
+
+    // Smooth internal links for browsers without CSS scroll-behavior
+    (function(){
+      if('scrollBehavior' in document.documentElement.style) return;
+      document.querySelectorAll('a[href^="#"], button[onclick]').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          // try to handle simple scrolling already handled inline; do nothing here
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
